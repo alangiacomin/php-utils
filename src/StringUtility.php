@@ -23,4 +23,25 @@ class StringUtility
             ''
         );
     }
+
+    static function to_kebab_case(string $text): string
+    {
+        foreach ([' ', '/', '\\'] as $separator)
+        if(str_contains($text, $separator))
+        {
+            $tokens = [];
+            foreach (explode($separator, $text) as $t)
+            {
+                $tokens[] = self::to_kebab_case($t);
+            }
+            return implode('-', $tokens);
+        }
+
+        preg_match_all('!([A-Z][A-Z0-9]*(?=$|[A-Z][a-z0-9])|[A-Za-z][a-z0-9]+)!', $text, $matches);
+        $ret = $matches[0];
+        foreach ($ret as &$match) {
+            $match = $match == strtoupper($match) ? strtolower($match) : lcfirst($match);
+        }
+        return implode('-', $ret);
+    }
 }

@@ -19,7 +19,8 @@
         "php": "^8.0"
     },
     "require-dev": {
-        "pestphp/pest": "^v1.22.3"
+        "pestphp/pest": "^v1.22.3",
+        "pestphp/pest-plugin-parallel": "^1.2"
     },
     "autoload": {
         "classmap": [
@@ -34,8 +35,11 @@
         }
     },
     "scripts": {
-        "test": "./vendor/bin/pest --no-coverage",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+        "test": "./vendor/bin/pest --parallel --no-coverage",
+        "test-coverage": [
+            "@putenv XDEBUG_MODE=coverage",
+            "./vendor/bin/pest --parallel --coverage --coverage-html coverage"
+        ]
     },
     "config": {
         "sort-packages": true,
