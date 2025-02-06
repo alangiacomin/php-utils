@@ -1,0 +1,53 @@
+{
+    "name": "alangiacomin/php-utils",
+    "license": "Apache-2.0",
+    "description": "PHP Utilities",
+    "keywords": [
+        "alangiacomin",
+        "php",
+        "utilities"
+    ],
+    "homepage": "https://github.com/alangiacomin/php-utils",
+    "authors": [
+        {
+            "name": "Alan Giacomin",
+            "email": "alan.giacomin@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2|^8.3|^8.4"
+    },
+    "require-dev": {
+        "pestphp/pest": "^v3.7.4"
+    },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ],
+        "psr-4": {
+            "Alangiacomin\\PhpUtils\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+        }
+    },
+    "scripts": {
+        "test": "./vendor/bin/pest --no-coverage --compact",
+        "test-coverage": [
+            "@putenv XDEBUG_MODE=coverage",
+            "./vendor/bin/pest --coverage --coverage-html coverage --compact"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
